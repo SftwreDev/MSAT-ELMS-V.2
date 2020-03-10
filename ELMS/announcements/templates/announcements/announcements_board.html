@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  {% include 'navbar.html' %}
+  {% if user.is_student %}
+  
+    <div class="container">
+      <div class="row">
+        <!--Side Navigation Bar-->
+        
+        <div class="col">
+          
+  
+        </div>
+  
+        <div class="col" style="margin-top: 7rem; margin-bottom: 4rem;">
+            <div class="card" style="width: 50rem; font-size: 14px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+              <div class="card-body">
+                <h3 class="card-title text-center">Announcements Board</h3>
+                <hr>
+                <p class="font-weight-light">Hello <span class="badge badge-danger">{{ user.username }}</span> ! </p>
+                
+                <div class="card">
+                    {% for list in announcements%}
+                    {{ list.name }}
+                    <hr>
+                    {{ list.content }}
+
+                    {% endfor %}
+                  
+                    
+                </div>
+  
+              </div>
+            </div>
+        </div>
+        <div class="col">
+          
+        </div>
+  
+      </div>
+    </div>
+  {% endif %}
+
+  {% include 'footer.html' %}
+{% endblock %}

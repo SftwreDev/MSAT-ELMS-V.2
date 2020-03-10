@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'navbar.html' %}
+{% if user.is_student %}
+
+  <div class="container">
+    <div class="row">
+      <!--Side Navigation Bar-->
+      {% include 'sidenav.html' %}
+      <div class="col">
+        
+
+      </div>
+
+      <div class="col-md-8" style="margin-top: 7rem; margin-bottom: 3rem; font-size: 14px;">
+        <div class="card">
+               
+                <div class="card-body">
+                  
+                </div>
+         
+            <div class="card-header">
+                
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link " href="{% url 'profile:student-profile' %}">Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="{% url 'profile:student-profile-about' %}">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'profile:student-taken-exams' %}">Taken Exams</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'profile:student-taken-quiz' %}">Taken Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'profile:student-options-profile' %}"><i class="fas fa-user-cog"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+             
+              <div class="card">
+               
+                <div class="card">
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <a class="nav-link active" href="{% url 'profile:student-create-profile' %}"><i class="fas fa-plus-circle"aria-hidden="false"></i>&nbspCreate your profile</a>
+                    </li>
+                    <li class="list-group-item">
+                      <a class="nav-link active" href="{% url 'profile:student-update-profile' user.pk %}"><i class="fas fa-edit" aria-hidden="false"></i>&nbspUpdate your profile</a>
+                    </li>
+                    <li class="list-group-item">
+                      <a class="nav-link active" href="{% url 'profile:student_profile_delete' user.pk %}"><i class="fas fa-trash-alt" aria-hidden="false"></i>&nbspDelete your profile</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              
+              </div>
+
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+{% include 'footer.html' %}
+{% endblock %}

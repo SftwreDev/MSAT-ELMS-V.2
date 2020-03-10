@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+{% if user.is_teacher %}
+
+<div class="container">
+    <div class="row">
+      {% include 'sidenav.html' %}
+      
+      <div class="col">
+        
+
+      </div>
+
+      <div class="col-12 " style="margin-top: 6rem; margin-bottom: 3rem;">
+          <div class="card" style="font-size: 14px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+            <div class="card-body">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">My Examinations</li>
+                  </ol>
+                </nav>
+                <h2 class="mb-3">My Examinations</h2>
+                <div class="alert alert-primary" role="alert" style='padding: 1rem; height: 4rem;'> 
+                  <a href="{% url 'exams:create-new-exams' %}" class="btn btn-primary mb-3 btn-sm col-md-1 offset-lg-11" role="button" >
+                    <i class="fas fa-plus" aria-hidden="false"></i>&nbsp Exams
+                  </a>
+                  
+                </div>
+                
+                <div class="card">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th>Exams</th>
+                        <th>Year Level</th>
+                        <th>Questions</th>
+                        <th>Taken</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for exams in exams %}
+                        <tr>
+                          <td class="align-middle"><a href="{% url 'exams:update_exams' exams.pk %}">{{ exams.name }}</a></td>
+                          <td class="align-middle">{{ exams.year_level }}</td>
+                          <td class="align-middle">{{ exams.questions_count }}</td>
+                          <td class="align-middle">{{ exams.taken_count }}</td>
+                          
+                          
+
+                          <td class="float-right">
+                            <a href="{% url 'exams:exams_results' exams.pk %}" class="btn btn-primary btn-sm"><i class="far fa-eye" aria-hidden="false"></i>&nbspView Result</a>
+                          
+                            <a href="{% url 'exams:exams_delete' exams.pk %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt" aria-hidden="false"></i>&nbspDelete</a>
+                            <a href="{% url 'exams:update_exams' exams.pk %}" class="btn btn-secondary btn-sm"><i class="fas fa-edit" aria-hidden="false"></i>&nbspEdit</a>
+                          </td>
+                        </tr>
+                      {% empty %}
+                        <tr>
+                          <td class="bg-light text-center font-italic" colspan="5">You haven't created any exams yet.</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+{% include 'footer.html' %}
+
+{% endblock %}
